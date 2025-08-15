@@ -15,6 +15,32 @@ spec:
       containers:
         - name: comments
           image: angelo256561/comments:latest
+          env:
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: database-secret
+                  key: host
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: database-secret
+                  key: port
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: database-secret
+                  key: name
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: database-secret
+                  key: user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-secret
+                  key: password
 ---
 apiVersion: v1
 kind: Service
